@@ -10,20 +10,20 @@ struct CategoryChip: View {
 
     var body: some View {
         Text(category.displayName)
-            .font(.system(size: 10, weight: .bold))
-            .foregroundStyle(.black)
+            .textStyle(.label)
+            .foregroundStyle(AppColors.textStrong)
             .lineLimit(1)
             .minimumScaleFactor(0.8)
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 14)
-            .background(AppColors.surface, in: RoundedRectangle(cornerRadius: 16))
+            .padding(.vertical, AppSpacing.xl)
+            .background(AppColors.surface, in: RoundedRectangle(cornerRadius: AppRadius.md))
     }
 }
 
 #Preview {
-    HStack(spacing: 8) {
+    HStack(spacing: AppSpacing.sm) {
         ForEach(WorkoutCategory.allCases) { CategoryChip(category: $0) }
     }
-    .padding(20)
+    .padding(AppSpacing.xxxl)
     .background(AppColors.background)
 }

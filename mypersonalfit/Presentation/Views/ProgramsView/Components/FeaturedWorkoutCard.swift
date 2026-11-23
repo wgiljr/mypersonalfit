@@ -12,46 +12,46 @@ struct FeaturedWorkoutCard: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(featured.badge)
-                .font(.system(size: 10, weight: .heavy))
-                .foregroundStyle(AppColors.textPrimary)
-                .padding(.horizontal, 10)
-                .padding(.vertical, 6)
+                .textStyle(.overline)
+                .foregroundStyle(AppColors.textOnAccent)
+                .padding(.horizontal, AppSpacing.md)
+                .padding(.vertical, AppSpacing.compact)
                 .background(AppColors.accent, in: Capsule())
 
             Spacer(minLength: 0)
 
             HStack(alignment: .bottom) {
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(alignment: .leading, spacing: AppSpacing.xs) {
                     Text(featured.workout.title)
-                        .font(.system(size: 25, weight: .heavy))
+                        .textStyle(.heading)
                     Text(featured.workout.summary)
-                        .font(.system(size: 12))
+                        .textStyle(.caption)
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(AppColors.textOnImage)
 
-                Spacer(minLength: 8)
+                Spacer(minLength: AppSpacing.sm)
 
                 Button(action: onStart) {
                     Text("Start")
-                        .font(.system(size: 13, weight: .heavy))
-                        .foregroundStyle(.black)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 12)
+                        .textStyle(.button)
+                        .foregroundStyle(AppColors.textStrong)
+                        .padding(.horizontal, AppSpacing.xxxl)
+                        .padding(.vertical, AppSpacing.lg)
                         .background(AppColors.accent, in: Capsule())
                 }
                 .buttonStyle(.plain)
             }
         }
-        .padding(20)
+        .padding(AppSpacing.xxxl)
         .frame(maxWidth: .infinity)
-        .frame(height: 226)
+        .frame(height: AppSize.heroCardHeight)
         .background {
             Image(featured.workout.imageName)
                 .resizable()
                 .scaledToFill()
-                .overlay(Color.black.opacity(0.38))
+                .overlay(AppColors.imageScrim)
         }
-        .clipShape(RoundedRectangle(cornerRadius: 24))
+        .clipShape(RoundedRectangle(cornerRadius: AppRadius.lg))
         .accessibilityElement(children: .contain)
     }
 }
@@ -67,6 +67,6 @@ struct FeaturedWorkoutCard: View {
             badge: "TODAY'S PICK"
         )
     )
-    .padding(20)
+    .padding(AppSpacing.xxxl)
     .background(AppColors.background)
 }

@@ -9,23 +9,23 @@ struct WorkoutCard: View {
     let workout: Workout
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: AppSpacing.sm) {
             Color.clear
-                .frame(height: 100)
+                .frame(height: AppSize.cardImageHeight)
                 .overlay {
                     Image(workout.imageName)
                         .resizable()
                         .scaledToFill()
                 }
-                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .clipShape(RoundedRectangle(cornerRadius: AppRadius.md))
                 .accessibilityHidden(true)
 
             Text(workout.title)
-                .font(.system(size: 13))
-                .foregroundStyle(.black)
+                .textStyle(.body)
+                .foregroundStyle(AppColors.textStrong)
 
             Text(workout.summary)
-                .font(.system(size: 10))
+                .textStyle(.captionSmall)
                 .foregroundStyle(AppColors.textSecondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -42,6 +42,6 @@ struct WorkoutCard: View {
         )
     )
     .frame(width: 169)
-    .padding(20)
+    .padding(AppSpacing.xxxl)
     .background(AppColors.background)
 }

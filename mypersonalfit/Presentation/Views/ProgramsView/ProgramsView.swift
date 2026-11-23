@@ -32,50 +32,50 @@ struct ProgramsView: View {
 
     private func content(for home: ProgramsHome) -> some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: AppSpacing.sectionGap) {
                 greeting(userName: home.userName)
 
                 sectionTitle("Featured")
                 FeaturedWorkoutCard(featured: home.featured)
 
                 sectionTitle("Categories")
-                HStack(spacing: 8) {
+                HStack(spacing: AppSpacing.sm) {
                     ForEach(home.categories) { CategoryChip(category: $0) }
                 }
 
                 sectionTitle("Popular workouts")
-                HStack(alignment: .top, spacing: 12) {
+                HStack(alignment: .top, spacing: AppSpacing.lg) {
                     ForEach(home.popularWorkouts) { WorkoutCard(workout: $0) }
                 }
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 14)
-            .padding(.bottom, 16)
+            .padding(.horizontal, AppSpacing.screenHorizontal)
+            .padding(.top, AppSpacing.xl)
+            .padding(.bottom, AppSpacing.xxl)
         }
         .refreshable { await viewModel.load() }
     }
 
     private func greeting(userName: String) -> some View {
         HStack {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: AppSpacing.xxs) {
                 Text(ProgramsViewModel.greeting())
-                    .font(.system(size: 13))
+                    .textStyle(.body)
                     .foregroundStyle(AppColors.textSecondary)
                 Text(userName)
-                    .font(.system(size: 28, weight: .heavy))
+                    .textStyle(.display)
                     .foregroundStyle(AppColors.textPrimary)
             }
             Spacer()
             Circle()
                 .fill(AppColors.textPrimary)
-                .frame(width: 42, height: 42)
+                .frame(width: AppSize.avatar, height: AppSize.avatar)
                 .accessibilityHidden(true)
         }
     }
 
     private func sectionTitle(_ title: String) -> some View {
         Text(title)
-            .font(.system(size: 17))
+            .textStyle(.title)
             .foregroundStyle(AppColors.textPrimary)
             .accessibilityAddTraits(.isHeader)
     }
