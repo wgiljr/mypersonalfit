@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct ProgramsView: View {
-    @State private var viewModel = ProgramsViewModel()
+    @State private var viewModel: ProgramsViewModel
+
+    init(repository: ProgramsRepository = SupabaseProgramsRepository()) {
+        _viewModel = State(initialValue: ProgramsViewModel(repository: repository))
+    }
 
     var body: some View {
         ZStack {
@@ -82,5 +86,5 @@ struct ProgramsView: View {
 }
 
 #Preview {
-    ProgramsView()
+    ProgramsView(repository: MockProgramsRepository())
 }
